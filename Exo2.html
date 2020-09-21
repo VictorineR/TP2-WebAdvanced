@@ -30,7 +30,7 @@
         var vm = new Vue({
         el: '#vm',
         data: {
-        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        message: 'White',
         isWhite: false,
 
         activeColor : 'white',
@@ -40,9 +40,19 @@
         methods : {
             inverser: function() {
                 this.isWhite = !this.isWhite
-                activeColor : 'black'
-                activeBackground: 'white'
+                vm.message = 'Black'  
+            },
+
+           /* myText : function(){
+                if isWhite == true{
+                    vm.message = 'Black';
+                }
+                else{
+                    vm.message = 'White';
+                }
+
             }
+            */
         }
 
         /*computed : {
