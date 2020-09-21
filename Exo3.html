@@ -25,16 +25,9 @@
         <ul>
             
             <li v-for='fruit in fruit' v-on:remove="fruit.splice(index, 1)" > 
-                <span v-on:click="changeCurrentFruit(fruit)">
-<<<<<<< HEAD
-                    <fruit-item></fruit-item>
-                <span v-if="currentFruit === fruit"> <b> {{cross}} {{fruit}}</b> </span>
-=======
+                <fruit-item></fruit-item><span v-on:click="changeCurrentFruit(fruit)">
                 <span v-if="currentFruit === fruit"> <b> {{fruit}}</b> </span>
->>>>>>> 312d7d12e1b827e87679367f35f99c3b9e0c63fa
                 <span v-else> {{fruit}}  </span></span>
-               
-
                 
             </li>
         </ul>
