@@ -39,8 +39,15 @@
 
         methods : {
             inverser: function() {
-                this.isWhite = !this.isWhite
-                vm.message = 'Black'  
+                if (this.isWhite == false){
+                    this.isWhite = !this.isWhite
+                    vm.message = 'Black' 
+                }
+                else if(this.isWhite == true){
+                    this.isWhite = false
+                    vm.message = 'White';
+                }
+
             },
 
            /* myText : function(){
