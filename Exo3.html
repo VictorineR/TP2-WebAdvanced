@@ -11,31 +11,40 @@
 
 <body>
 
+    <style>
+        ul{
+            list-style-type: none;
+        }
+    </style>
+
     <div id="vm">
     
-        <h1 v-bind="displays-3">Liste des fuits</h1>
-            
-        {{currentFruit}}
+        <h1 v-bind="displays-3">Liste des fuits </h1>
+        {{currentFruit}} 
     
         <ul>
-            <li v-for='fruit in fruit' v-on:remove="todos.splice(index, 1)" > 
+            
+            <li v-for='fruit in fruit' v-on:remove="fruit.splice(index, 1)" > 
                 <span v-on:click="changeCurrentFruit(fruit)">
+                    <fruit-item></fruit-item>
                 <span v-if="currentFruit === fruit"> <b> {{cross}} {{fruit}}</b> </span>
                 <span v-else> {{fruit}}  </span></span>
+               
+
+                
             </li>
         </ul>
+        
     </div>
 
     <script>
         Vue.component('fruit-item', {
-            template: `
-                <li>
-                {{ fruit }}
-                <button v-on:click="$emit(\'remove\')">❌</button>
-                 </li>
-                 `,
-            props: ['fruit']
+            props: ['fruit'],
+            template: 
+                '<span v-on:click="removeFruit">卐</span>'
+                
         })
+
     
         var vm = new Vue({
         el : '#vm',
@@ -47,7 +56,11 @@
 
         methods :{
             changeCurrentFruit: function(fruit){ 
-                this.currentFruit = fruit 
+                this.currentFruit = fruit; 
+            },
+
+            removeFruit: function(){
+                this.fruit.splice(this.fruit.indexOf(fruit), 1);
             },
 
 
