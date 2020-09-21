@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP2-Exo4</title>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+    <div id="vm">
+
+        <h1 v-bind="displays-3">Liste des cours</h1>
+
+        <form v-on:submit.prevent="addNewCours">
+            <label for="new-cours">New Cours</label>
+            <input
+            v-model="newCours"
+            id="new-cours"
+            placeholder="Ex. Programmation"
+            >    
+            <button>Add</button>
+        </form>
+
+        <article>
+            <li
+              is="cours-item"
+              v-for="(cours, index) in cours"
+              v-bind:key="cours.id"
+              v-bind:title="cours.title"
+              v-on:remove="cours.splice(index, 1)"
+            > </li>
+            <br>
+        </article>
+    </div>
+
+    <script>
+        Vue.component('cours-item'), {
+            template: `
+            <li>
+            {{ title }}
+            <button v-on:click="$emit(\'remove\')">Supprimer</button>
+            </li>
+            `,
+
+            props: ['title'],
+        }
+
+        var vm = new Vue({
+        el : '#vm',
+        data : {
+            newCoursText:'', 
+            cours : [
+                {
+                    id:1,
+                    title: 'Algorithmique', 
+                },
+                {
+                    id:2,
+                    title: 'Structures de données', 
+                },
+                {
+                    id:3,
+                    title: 'Programmation Web', 
+                },
+                {
+                    id:4,
+                    title: 'Web Avancé', 
+                },
+                {
+                    id:5,
+                    title: 'Frond-end Web Development', 
+                },
+                {
+                    id:6,
+                    title: 'Asynchronous Event-Driven Programming with Node.js', 
+                },
+            ],
+        methods: {
+            addNewCours: function () {
+                this.cours.push({
+                id: this.nextCoursId++,
+                title: this.newCoursText
+            })
+
+            this.newCoursText = ''            
+        }
+
+        })
+    </script>
+    
+</body>
+</html>

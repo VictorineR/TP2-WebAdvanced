@@ -20,7 +20,7 @@
         <ul>
             <li v-for='fruit in fruit' v-on:remove="todos.splice(index, 1)" > 
                 <span v-on:click="changeCurrentFruit(fruit)">
-                <span v-if="currentFruit === fruit"> <b> {{cross}} {{fruit}}</b> </span>
+                <span v-if="currentFruit === fruit"> <b> {{fruit}}</b> </span>
                 <span v-else> {{fruit}}  </span></span>
             </li>
         </ul>
@@ -42,6 +42,7 @@
         data:{
             fruit : ['Pomme', 'Orange', 'Fraise', 'Melon', 'Cerise'],
             currentFruit: 'Pomme ',
+            
             
         },
 
