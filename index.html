@@ -14,6 +14,7 @@
         <div class="container">
             <p class="jumbotron">My age is <input type="text" v-model = "age" /> | My age is {{ age }} ans  <!-- referancer user--> </p>
             <button v-on:click="oneMore (age)">  add 1 year </button>
+           
         </div>
     </div>
 
@@ -30,10 +31,16 @@
 
         methods : {
             oneMore : function(age){
-                setInterval(vm.age = vm.age + 1, 1000) ;
+
+                let self = this
+                setInterval(function(){
+                    vm.age = vm.age + 1;
+                    self.seconde++;
+                }, 1000)
+                
             }
         }
-        
+
         })
     </script>
     
