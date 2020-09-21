@@ -13,13 +13,15 @@
 
 
     <div id="vm">
-        <div class="container">
+       <template>
+            <div class="container">
 
-            <p class="jumbotron" v-if="isWhite" v-bind:style="{ color: activeColor, background: activeBackground }" >{{ message }} <br> ab</p>
-            <p class="jumbotron" v-else="inverse"  >{{ message }} <br> ba</p>
+                <p class="jumbotron" v-if="isWhite" v-bind:style="{ color: activeColor, background: activeBackground }" >{{ message }} <br> ab</p>
+                <p class="jumbotron" v-else="inverse"  >{{ message }} <br> ba</p>
 
-            <button v-on:click="inverser">Changer la couleur</button>   
-        </div>
+                <button v-on:click="inverser">Changer la couleur</button>   
+            </div>
+        </template>
       </div>
 
 
@@ -42,6 +44,15 @@
                 activeBackground: 'white'
             }
         }
+
+        /*computed : {
+            myText : function(
+                {
+                    if (isWhite == true)
+                        vm
+                }
+            )
+        }*/
     })
     </script>
     
