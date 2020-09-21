@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP2-Exo2</title>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<body>
+
+
+    <div id="vm">
+        <div class="container">
+
+            <p class="jumbotron" v-if="isWhite" v-bind:style="{ color: activeColor, background: activeBackground }" >{{ message }} <br> ab</p>
+            <p class="jumbotron" v-else="inverse"  >{{ message }} <br> ba</p>
+
+            <button v-on:click="inverser">Changer la couleur</button>   
+        </div>
+      </div>
+
+
+
+    <script>
+        var vm = new Vue({
+        el: '#vm',
+        data: {
+        message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        isWhite: false,
+
+        activeColor : 'white',
+        activeBackground : 'black',
+        },
+
+        methods : {
+            inverser: function() {
+                this.isWhite = !this.isWhite
+                activeColor : 'black'
+                activeBackground: 'white'
+            }
+        }
+    })
+    </script>
+    
+</body>
+</html>
