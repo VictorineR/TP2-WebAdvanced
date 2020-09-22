@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,86 +10,90 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <style>
-    li{
+    li {
         list-style: none;
     }
-    h1{
+
+    h1 {
         text-align: center;
     }
-    #vm{
+
+    #vm {
         margin-left: auto;
         margin-right: auto;
         width: 400px;
     }
 </style>
+
 <body>
     <div id="vm">
 
         <h1 v-bind="displays-3">Liste des cours</h1>
-        <article >
-            <li v-for="(cours, index) in cours" 
-                v-bind:cours="cours"
-                v-bind:index="index"
-                v-bind:key="cours.id"> {{cours}}  {{index}}</li>
+        <article>
+            <li v-for="(cours, index) in cours" v-bind:cours="cours" v-bind:index="index" v-bind:key="cours.id">
+                {{cours}}</li>
             <br>
         </article>
-    
+
         <form v-on:submit.prevent="addNewCours">
-            <input
-                v-model="newCours"
-                type="text"
-                placeholder="New cours"
-            >
+            <input v-model="newCours" type="text" placeholder="New cours">
             <button>Add</button>
-            
+
         </form>
 
         <br>
 
         <select v-model="selected">
-            <option v-for="cours in cours" >
+            <option v-for="cours in cours">
                 {{cours}}
-            </option> 
+            </option>
         </select>
 
-<br>
-        
-            <input v-model="selected" type= "text" placeholder="You can modified the cours title"> 
-            <button @click="modifNewCours">Modify</button>
+        <br>
+
+        <input v-model="selected" type="text" placeholder="You can modified the cours title">
+        <button @click="modifNewCours">Modify</button>
+
+        <p>{{selected}}</p>
     </div>
 
     <script>
 
         var vm = new Vue({
-        el : '#vm',
-        data : {
-            cours : ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
-            newCours: " " , 
-            modifCours: " ",
-            selected: ''
-        },
-        methods :{
-            addNewCours : function(cours){
-                this.cours.push(this.newCours)
+            el: '#vm',
+            data: {
+                cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
+                newCours: " ",
+                modifCours: " ",
+                selected: '', // structure à modifier je pense
             },
-            
- 
-            modifNewCours : function(){
-                this.cours.push(this.selected);
-            },
-
-            remove (index) {
-                    // this.todos.splice(index, 1)     
-                    this.$delete(this.select, index)
-            },
+            methods: {
+                addNewCours: function (cours) {
+                    this.cours.push(this.newCours)
+                },
 
 
-        }
-        
-    
-         })
+                modifNewCours: function () {
+                    this.cours.push(this.selected);
+                    this.index = index -1;
+                    this.cours.remove(this.index)
+
+                },
+
+                remove(index) {
+                    //this.selected.splice(index, 1)
+                    this.$delete(this.selected, index)
+                },
+                
+
+            },
+
+
+
+
+        })
     </script>
-    
-</body>
-</html>
 
+</body>
+
+</html>
