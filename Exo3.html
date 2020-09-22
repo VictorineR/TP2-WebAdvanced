@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,65 +8,63 @@
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <body>
 
     <style>
-        ul{
+        ul {
             list-style-type: none;
         }
     </style>
 
     <div id="vm">
-    
+
         <h1 v-bind="displays-3">Liste des fuits </h1>
-        {{currentFruit}} 
-    
+        {{currentFruit}}
+
         <ul>
-            
-            <li v-for='fruit in fruit' v-on:remove="fruit.splice(index, 1)" > 
-                <fruit-item></fruit-item><span v-on:click="changeCurrentFruit(fruit)">
+
+            <li v-for='fruit, index in  fruits' >
+                <span @click="remove(index)">❌</span> 
+                <span v-on:click="changeCurrentFruit(fruit)">
                 <span v-if="currentFruit === fruit"> <b> {{fruit}}</b> </span>
-                <span v-else> {{fruit}}  </span></span>
+                <span v-else> {{fruit}} </span></span>
+                
                 
             </li>
         </ul>
-        
     </div>
 
     <script>
-        Vue.component('fruit-item', {
-            props: ['fruit'],
-            template: 
-                '<span v-on:click="removeFruit">卐</span>'
-                
-        })
-
-    
+        
         var vm = new Vue({
-        el : '#vm',
-        data:{
-            fruit : ['Pomme', 'Orange', 'Fraise', 'Melon', 'Cerise'],
-            currentFruit: 'Pomme ',
-            
-            
-        },
+            el: '#vm',
+            data: {
+                
+                fruits: ['Pomme', 'Orange', 'Fraise', 'Melon', 'Cerise'],
+                currentFruit: 'Pomme ',
 
-        methods :{
-            changeCurrentFruit: function(fruit){ 
-                this.currentFruit = fruit; 
+
             },
 
-            removeFruit: function(){
-                this.fruit.splice(this.fruit.indexOf(fruit), 1);
+            methods: {
+                changeCurrentFruit: function (fruit) {
+                    this.currentFruit = fruit;
+                },
+
+                remove (index) {
+                    // this.todos.splice(index, 1)
+                    this.$delete(this.fruits, index)
+                 },
+
+
             },
-
-
-        },
 
         })
     </script>
-    
+
 </body>
+
 </html>
