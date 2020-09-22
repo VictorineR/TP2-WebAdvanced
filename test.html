@@ -36,9 +36,8 @@
         </article>
 
         <form v-on:submit.prevent="addNewCours">
-            <input v-model="newCours" type="text" placeholder="New cours">
+            <input v-model="newCours"  placeholder="New cours">
             <button>Add</button>
-
         </form>
 
         <br>
@@ -51,10 +50,9 @@
 
         <br>
 
-        <input v-model="selected" type="text" placeholder="You can modified the cours title">
-        <button @click="modifNewCours">Modify</button>
+        <input v-model="selected, newCours" type="text" placeholder="You can modified the cours title">
+        <button @click="modifNewCours(newCours)">Modify</button>
 
-        <p>{{selected}}</p>
     </div>
 
     <script>
@@ -65,31 +63,24 @@
                 cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
                 newCours: " ",
                 modifCours: " ",
-                selected: '', // structure à modifier je pense
+                selected: '', 
             },
+
             methods: {
-                addNewCours: function (cours) {
+                addNewCours: function (newCours) {
                     this.cours.push(this.newCours)
                 },
 
-
-                modifNewCours: function () {
-                    this.cours.push(this.selected);
-                    this.index = index -1;
-                    this.cours.remove(this.index)
+                modifNewCours: function (modifCours) {
+                    this.cours[this.cours.indexOf(this.selected)] = this.newCours;
+                    this.selected = this.newCours;
 
                 },
 
-                remove(index) {
-                    //this.selected.splice(index, 1)
-                    this.$delete(this.selected, index)
-                },
-                
-
+            
             },
 
-
-
+        
 
         })
     </script>
