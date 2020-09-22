@@ -19,15 +19,6 @@
                 v-bind:key="cours.id"> {{cours}}  </li>
             <br>
         </article>
-
-        <article v-if: >
-            <li v-for="(cours, index) in cours" 
-                v-bind:cours="cours"
-                v-bind:index="index"
-                v-bind:key="cours.id"> {{cours}}  </li>
-            <br>
-        </article>
-
     
         <form v-on:submit.prevent="addNewCours">
             <span> {{ selected }} <br></span>
