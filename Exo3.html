@@ -17,6 +17,10 @@
         ul {
             list-style-type: none;
         }
+
+        #cross:hover{
+            cursor: pointer;
+        }
     </style>
 
     <div id="vm">
@@ -27,7 +31,7 @@
         <ul>
 
             <li v-for='fruit, index in  fruits' >
-                <span @click="remove(index)">❌</span> 
+                <span id="cross" @click="remove(index)">❌</span> 
                 <span v-on:click="changeCurrentFruit(fruit)">
                 <span v-if="currentFruit === fruit"> <b> {{fruit}}</b> </span>
                 <span v-else> {{fruit}} </span></span>
