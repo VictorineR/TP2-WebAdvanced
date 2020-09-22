@@ -14,7 +14,6 @@
         list-style-type: none;
     }
 
-
     h1 {
         text-align: center;
     }
@@ -24,6 +23,11 @@
         margin-right: auto;
         width: 400px
     }
+
+    span:hover{
+        cursor: pointer;
+    }
+
 </style>
 
 <body>
@@ -39,7 +43,7 @@
         <ul>
             <li v-for="todo in todos" :key="todo.id">
 
-                <button v-on:click="removeTodo(todo.id)">❌</button>
+                <span v-on:click="removeTodo(todo.id)">❌</span>
 
                 <del v-if="todo.done">{{ todo.text }} | {{todo.content}}</del>
                 <span v-else>{{ todo.text }} | {{todo.content}}</span>
