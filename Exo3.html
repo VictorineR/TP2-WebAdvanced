@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,7 @@
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <body>
 
@@ -18,37 +17,55 @@
             list-style-type: none;
         }
 
-        #cross:hover{
+        #cross:hover {
             cursor: pointer;
         }
+        
+        h1{
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 15px;
+        }
+
+        #vm{
+            width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #vm p{
+            text-align: center;
+            text-decoration: underline;
+        }
+
+
     </style>
 
-    <div id="vm">
+    <div id="vm">   
 
-        <h1 v-bind="displays-3">Liste des fuits </h1>
-        {{currentFruit}}
+        <h1 v-bind="displays-3">List of fruits </h1>
+        <p> {{currentFruit}} </p> 
 
         <ul>
 
-            <li v-for='fruit, index in  fruits' >
-                <span id="cross" @click="remove(index)">❌</span> 
+            <li v-for='fruit, index in  fruits'>
+                <span id="cross" @click="remove(index)">❌</span>
                 <span v-on:click="changeCurrentFruit(fruit)">
-                <span v-if="currentFruit === fruit"> <b> {{fruit}}</b> </span>
-                <span v-else> {{fruit}} </span></span>
-                
-                
+                    <span v-if="currentFruit === fruit"> <b> {{fruit}}</b> </span>
+                    <span v-else> {{fruit}} </span></span>
+
+
             </li>
         </ul>
     </div>
 
     <script>
-        
         var vm = new Vue({
             el: '#vm',
             data: {
-                
-                fruits: ['Pomme', 'Orange', 'Fraise', 'Melon', 'Cerise'],
-                currentFruit: 'Pomme ',
+
+                fruits: ['Apple', 'Orange', 'Strawberry', 'Melon', 'Cherry'],
+                currentFruit: 'Apple ',
             },
 
             methods: {
@@ -56,10 +73,9 @@
                     this.currentFruit = fruit;
                 },
 
-                remove (index) {
-                    // this.todos.splice(index, 1)
+                remove(index) {
                     this.$delete(this.fruits, index)
-                 },
+                },
 
 
             },
