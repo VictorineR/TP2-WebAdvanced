@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +16,10 @@
        <template>
             <div class="container">
 
-                <p class="jumbotron" v-if="isWhite" v-bind:style="{ color: activeColor, background: activeBackground }" >{{ message }} <br> ab</p>
-                <p class="jumbotron" v-else="inverse"  >{{ message }} <br> ba</p>
+                <p class="jumbotron" v-if="isWhite" v-bind:style="{ color: activeColor, background: activeBackground }" >{{ message }} <br> </p>
+                <p class="jumbotron" v-else="inverse"  >{{ message }} <br></p>
 
-                <button v-on:click="inverser">Changer la couleur</button>   
+                <button v-on:click="inverse">Change color</button>   
             </div>
         </template>
       </div>
@@ -38,7 +38,7 @@
         },
 
         methods : {
-            inverser: function() {
+            inverse: function() {
                 if (this.isWhite == false){
                     this.isWhite = !this.isWhite
                     vm.message = 'Black' 
