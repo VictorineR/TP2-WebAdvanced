@@ -12,28 +12,30 @@
     <div id="vm">
 
         <h1 v-bind="displays-3">Liste des cours</h1>
-
-        <form v-on:submit.prevent="addNewCours">
-            <label for="new-cours">New Cours</label>
-            <input
-            v-model="newCours"
-            id="new-cours"
-            placeholder="Ex. Programmation"
-            >    
-            <button>Add</button>
-        </form>
-
-        <article>
-            <li
-              is="cours-item"
-              v-for="(cours, index) in cours"
-              v-bind:key="cours.id"
-              v-bind:title="cours.title"
-              v-on:remove="cours.splice(index, 1)"
-            > </li>
+        <article >
+            <li v-for="(cours, index) in cours" 
+                v-bind:cours="cours"
+                v-bind:index="index"
+                v-bind:key="cours.id"> {{cours}}  </li>
             <br>
         </article>
+
+    
+        <input v-model="cours" type="text" placeholder="new cours">
+        <button v-on:click="addNewCours">Add</button>
+
+
+        <form v-on:submit.prevent="addNewCours">
+            <input
+                is = 
+                v-model="newCoursText"
+                id="new-cours"
+                placeholder="New cours"
+            >
+            <button>Add</button>
+          </form>
     </div>
+
 
     <script>
         Vue.component('cours-item'), {
@@ -50,43 +52,16 @@
         var vm = new Vue({
         el : '#vm',
         data : {
+            cours : ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
+
             newCoursText:'', 
-            cours : [
-                {
-                    id:1,
-                    title: 'Algorithmique', 
-                },
-                {
-                    id:2,
-                    title: 'Structures de données', 
-                },
-                {
-                    id:3,
-                    title: 'Programmation Web', 
-                },
-                {
-                    id:4,
-                    title: 'Web Avancé', 
-                },
-                {
-                    id:5,
-                    title: 'Frond-end Web Development', 
-                },
-                {
-                    id:6,
-                    title: 'Asynchronous Event-Driven Programming with Node.js', 
-                },
-            ],
-        methods: {
-            addNewCours: function () {
-                this.cours.push({
-                id: this.nextCoursId++,
-                title: this.newCoursText
-            })
-
-            this.newCoursText = ''            
+        },
+        methods :{
+            addNewCours : function(cours){
+                this.cours.push()
+            }
         }
-
+    
         })
     </script>
     

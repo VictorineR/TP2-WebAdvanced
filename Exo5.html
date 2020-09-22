@@ -28,3 +28,64 @@
     
 </body>
 </html>
+
+
+
+
+
+<body>
+    <div id="vm">
+
+        <h1 v-bind="displays-3">Liste des cours</h1>
+
+        <form v-on:submit.prevent="addNewCours">
+            <label for="new-cours">New Cours</label>
+            <input
+            v-model="newCours"
+            id="new-cours"
+            placeholder="Ex. Programmation"
+            >    
+            <button>Add</button>
+        </form>
+
+        <article>
+            <li
+              v-for="(cours, index) in cours"
+            > </li>
+            <br>
+        </article>
+    </div>
+
+    <script>
+        Vue.component('cours-item'), {
+            template: `
+            <li>
+            {{ cours }}
+            <button v-on:click="$emit(\'remove\')">Supprimer</button>
+            </li>
+            `,
+
+            props: ['cours'],
+        }
+
+        var new-cours = new Vue({
+        el : '#new-cours',
+        data : {
+            newCoursText:'', 
+            cours :['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js']
+
+        methods: {
+            addNewCours: function () {
+                this.cours.push({
+                id: this.nextCoursId++,
+                title: this.newCoursText
+            })
+
+            this.newCoursText = ''            
+        }
+
+        })
+    </script>
+    
+</body>
+</html>
