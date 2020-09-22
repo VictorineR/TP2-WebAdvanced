@@ -1,119 +1,90 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP2-Exo5</title>
+    <title>TP2-Exo4/test</title>
 </head>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <body>
-
-    <template>
-        <div class="container">
-            <todo>
-                
-            </todo>
-
-        </div>
-
-    </template>
-
-
-
-    <script>
-
-    </script>
-    
-</body>
-</html>
-
-
-
-
-
-<body>
     <div id="vm">
 
         <h1 v-bind="displays-3">Liste des cours</h1>
-
-        <form v-on:submit.prevent="addNewCours">
-            <label for="new-cours">New Cours</label>
-            <input
-            v-model="newCours"
-            id="new-cours"
-            placeholder="Ex. Programmation"
-            >    
-            <button>Add</button>
-        </form>
-
-        <article>
-            <li
-              v-for="(cours, index) in cours"
-            > </li>
+        <article >
+            <li v-for="(cours, index) in cours" 
+                v-bind:cours="cours"
+                v-bind:index="index"
+                v-bind:key="cours.id"> {{cours}}  </li>
             <br>
         </article>
+
+    
+        <form v-on:submit.prevent="addNewCours">
+            <input
+                v-model="newCours"
+                type="text"
+                placeholder="New cours"
+            >
+            <button>Add</button>
+            
+        </form>
+
+        <br><br>
+        <form v-on:submit="selectCours">
+            <select v-model="selected" >
+                <option disabled value="">Choisissez</option>
+                <option v-for="cours in cours">
+                    {{cours}}
+                </option>
+            </select>
+            <button>Select</button>
+        </form>
+
+<br><br>
+        <form v-on:submit.prevent="modifNewCours">
+            <input
+                v-model="selected"
+                type= "text"
+                placeholder="You can modified the cours title"
+            > 
+            <button>Modifier</button>
+        </form>
+
     </div>
 
+
     <script>
-        Vue.component('cours-item'), {
-            template: `
-            <li>
-            {{ cours }}
-            <button v-on:click="$emit(\'remove\')">Supprimer</button>
-            </li>
-            `,
 
-            props: ['cours'],
-        }
-
-        var new-cours = new Vue({
-        el : '#new-cours',
+        var vm = new Vue({
+        el : '#vm',
         data : {
-            newCoursText:'', 
-            cours :['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js']
+            cours : ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
+            newCours: " " , 
+            select: " ",
+        },
+        methods :{
+            addNewCours : function(cours){
+                this.cours.push(this.newCours)
+            },
+ 
+            modifNewCours : function(){
+        
+                this.cours.push(this.selected);
+            },
 
-        methods: {
-            addNewCours: function () {
-                this.cours.push({
-                id: this.nextCoursId++,
-                title: this.newCoursText
-            })
+            selectCours : function(){
+                modifNewCours(selected)
+            }
 
-            this.newCoursText = ''            
+
         }
-
+        
+    
         })
     </script>
     
 </body>
 </html>
 
-
-[
-                {
-                    id:0,
-                    title: 'Algorithmique', 
-                },
-                {
-                    id:1,
-                    title: 'Structures de données', 
-                },
-                {
-                    id:2,
-                    title: 'Programmation Web', 
-                },
-                {
-                    id:3,
-                    title: 'Web Avancé', 
-                },
-                {
-                    id:4,
-                    title: 'Frond-end Web Development', 
-                },
-                {
-                    id:,
-                    title: 'Asynchronous Event-Driven Programming with Node.js', 
-                },
-            ],
