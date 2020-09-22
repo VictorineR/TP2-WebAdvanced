@@ -21,49 +21,39 @@
         </article>
 
     
-        <input v-model="cours" type="text" placeholder="new cours">
-        <button v-on:click="addNewCours">Add</button>
-
-
         <form v-on:submit.prevent="addNewCours">
             <input
-                is = "cours-item"
-                v-model="newCoursText"
-                id="new-cours"
+                v-model="newCours"
+                type="text"
                 placeholder="New cours"
             >
             <button>Add</button>
-          </form>
+        </form>
+
+       
+
     </div>
 
 
     <script>
-        Vue.component('cours-item'), {
-            template: `
-            <li>
-            {{ title }}
-            <button v-on:click="$emit(\'remove\')">Supprimer</button>
-            </li>
-            `,
-
-            props: ['title'],
-        }
 
         var vm = new Vue({
         el : '#vm',
         data : {
             cours : ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
 
-            newCoursText:'', 
+            newCours: " " , 
         },
         methods :{
-            addNewCours : function(cours){
-                this.cours.push()
+            addNewCours : function(){
+                this.cours.push(this.newCours)
             }
         }
+        
     
         })
     </script>
     
 </body>
 </html>
+
