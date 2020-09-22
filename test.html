@@ -12,6 +12,14 @@
     li{
         list-style: none;
     }
+    h1{
+        text-align: center;
+    }
+    #vm{
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+    }
 </style>
 <body>
     <div id="vm">
@@ -26,7 +34,6 @@
         </article>
     
         <form v-on:submit.prevent="addNewCours">
-            <span> {{ selected }} <br></span>
             <input
                 v-model="newCours"
                 type="text"
@@ -38,24 +45,17 @@
 
         <br>
 
-        <select v-model="selected" v-on:submit.prevent="modifNewCours">
-            <option v-for="cours in cours">
+        <select v-model="selected">
+            <option v-for="cours in cours" >
                 {{cours}}
             </option> 
         </select>
 
 <br>
-        <form v-on:submit.prevent="modifNewCours">  
-            <input
-                v-model="selected"
-                type= "text"
-                placeholder="You can modified the cours title"
-            > 
-            <button>Modifier</button>
-        </form>
-
+        
+            <input v-model="selected" type= "text" placeholder="You can modified the cours title"> 
+            <button @click="modifNewCours">Modify</button>
     </div>
-
 
     <script>
 
@@ -65,7 +65,7 @@
             cours : ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js'],
             newCours: " " , 
             modifCours: " ",
-            select: " ",
+            selected: ''
         },
         methods :{
             addNewCours : function(cours){
@@ -78,8 +78,7 @@
             },
 
             remove (index) {
-                    // this.todos.splice(index, 1)
-                    
+                    // this.todos.splice(index, 1)     
                     this.$delete(this.select, index)
             },
 
