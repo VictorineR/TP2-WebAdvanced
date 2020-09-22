@@ -20,6 +20,14 @@
             <br>
         </article>
 
+        <article v-if: >
+            <li v-for="(cours, index) in cours" 
+                v-bind:cours="cours"
+                v-bind:index="index"
+                v-bind:key="cours.id"> {{cours}}  </li>
+            <br>
+        </article>
+
     
         <form v-on:submit.prevent="addNewCours">
             <span> {{ selected }} <br></span>
@@ -71,7 +79,12 @@
  
             modifNewCours : function(){
                 this.cours.push(this.select);
-            }
+            },
+
+            remove (index) {
+                    // this.todos.splice(index, 1)
+                    this.$delete(this.select, index)
+            },
 
 
         }
